@@ -1,142 +1,101 @@
-# meeting-spot-recommender
-# This project is for vibe coding competition. It's my first time to try to start and create a web, also my first time to use Github. I want to develop a function that helps multuple people find a central meeting place.
 # Intelligent Meeting Spot Recommender
 
 **Vibe Coding Hackathon - Build Track**
 
-A full-stack web application that helps friends find the fairest meeting location when scattered across a city, using real-time map data and intelligent algorithms.
+## Project Description
+A full-stack web application that helps friends find the fairest meeting location when they're scattered across a city. Uses intelligent algorithms and real map data to calculate optimal meeting spots based on travel time fairness.
 
----
+## Features
+- 🗺️ Interactive map interface for selecting friend locations
+- 📍 Real-time venue search using Baidu Maps API
+- ⚖️ Three sorting strategies: Total Time, Fairness, Average Time
+- 🚗 Accurate travel time calculations
+- 📱 Mobile-responsive design
 
-## 🎯 Overview
+## Technology Stack
+- **Backend**: Python Flask + flask-cors + requests
+- **Frontend**: Vanilla JavaScript + Leaflet.js
+- **Maps API**: Baidu Maps (Place Search + Direction)
+- **Algorithm**: Haversine formula for geometric center calculation
 
-Finding a fair meeting spot for friends at different locations can be challenging. This app solves that by:
-- Calculating the geometric center of all participants
-- Searching nearby venues using Baidu Maps API
-- Computing actual travel times for each person
-- Recommending top 5 spots based on fairness strategies
+## Installation
 
----
-
-## ✨ Features
-
-- 🗺️ **Interactive Map**: Click to add locations, visual markers for participants and results
-- 📍 **Smart Search**: Filter by venue type (Restaurant, Café, Cinema, Park, Mall)
-- ⚖️ **3 Sorting Strategies**: Total Time, Most Fair, Average Time
-- 🚗 **Real Travel Times**: Actual driving time calculations
-- 📱 **Responsive Design**: Works on desktop and mobile
-
----
-
-## 🛠️ Tech Stack
-
-**Backend**: Python Flask + flask-cors + requests  
-**Frontend**: Vanilla JavaScript + Leaflet.js  
-**APIs**: Baidu Maps (Place Search + Direction)  
-**Algorithm**: Haversine formula for geometric calculations
-
----
-
-## 📁 Project Structure
-
-```
-meeting-spot-recommender/
-├── app.py              # Flask backend
-├── requirements.txt    # Dependencies
-├── templates/
-│   └── index.html     # Main page
-└── static/
-    ├── css/style.css  # Styling
-    └── js/main.js     # Frontend logic
-```
-
----
-
-## 🚀 Quick Start
-
-### Installation
-
+### 1. Clone the repository
 ```bash
-# Create virtual environment
+git clone <your-repo-url>
+cd meeting-spot-recommender
+```
+
+### 2. Set up Python virtual environment
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-# Install dependencies
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-# Run application
+### 4. Configure Baidu Maps API Key
+Edit `app.py` and set your Baidu Maps AK:
+```python
+BAIDU_AK = "your_api_key_here"
+```
+
+### 5. Run the application
+```bash
 python app.py
 ```
 
-### Usage
+Visit `http://localhost:5000` in your browser.
 
-1. Open `http://localhost:8000` in browser
-2. Click map to add 2-10 friend locations (blue markers)
-3. Select venue types and sorting strategy
-4. Click "Find Meeting Spots"
-5. View results (green markers) on map and sidebar
+## Usage
+1. Click on the map to add friend locations (blue markers)
+2. Select venue types (Restaurant, Café, Cinema, etc.)
+3. Choose sorting strategy (Fairness recommended)
+4. Adjust search radius if needed
+5. Click "Find Meeting Spots"
+6. View results on map and sidebar
 
----
-
-## 🔧 API Endpoints
-
-**GET /** - Main application page  
-**GET /api/health** - Health check  
-**POST /api/recommend** - Get meeting spot recommendations
-
-### Example Request
-```json
-{
-  "coordinates": [[31.2304, 121.4737], [31.2244, 121.4692]],
-  "venue_types": ["美食", "咖啡厅"],
-  "sort_strategy": "fair",
-  "radius": 3000
-}
+## Project Structure
+```
+meeting-spot-recommender/
+├── app.py              # Flask backend with API endpoints
+├── requirements.txt    # Python dependencies
+├── templates/
+│   └── index.html     # Main HTML page
+├── static/
+│   ├── css/
+│   │   └── style.css  # Styling
+│   └── js/
+│       └── main.js    # Frontend logic
+└── README.md          # This file
 ```
 
----
+## API Endpoints
 
-## 🧮 Algorithm
+### GET /
+Main application page
 
-### Geometric Center
-Uses spherical geometry to calculate true center on Earth's surface
+### GET /api/health
+Health check endpoint
 
-### Haversine Formula
-Calculates great-circle distance between coordinates
-```
-distance = R × 2 × atan2(√a, √(1-a))
-where a = sin²(Δlat/2) + cos(lat1) × cos(lat2) × sin²(Δlon/2)
-```
+### POST /api/calculate-center
+Calculate geometric center of coordinates
 
-### Scoring Strategies
-- **Total Time**: `score = 1000 / sum(times)`
-- **Most Fair**: `score = 1000 / max(times)` ← Recommended
-- **Average Time**: `score = 1000 / mean(times)`
+### POST /api/recommend
+Get meeting spot recommendations (implemented in Phase 4)
 
----
+## Development Phases
+- [x] Phase 1: Project Foundation
+- [ ] Phase 2: Basic Frontend
+- [ ] Phase 3: Backend Core
+- [ ] Phase 4: API Integration & Algorithm
+- [ ] Phase 5: Full Integration & Polish
 
-## 🐛 Troubleshooting
-
-**Port in use**: Change port in `app.py` last line  
-**No results**: Ensure markers in Shanghai area, increase radius  
-**API errors**: Check API key, internet connection
-
----
-
-
-## 📊 Key Metrics
-
-- Response Time: < 5 seconds
-- Max Locations: 10 participants
-- Results: Top 5 recommendations
-- API Rate Limit: 100ms interval
-
----
-
-## 📄 License
-
+## License
 MIT License - Hackathon Project
 
----
-
-**Built with AI assistance (Claude) for Vibe Coding Hackathon**
+## Author
+Built with AI assistance for Vibe Coding Hackathon
