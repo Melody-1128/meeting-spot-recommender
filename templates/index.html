@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Meeting Spot Recommender</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🗺️ Intelligent Meeting Spot Recommender</h1>
+        <p>Find the fairest meeting location for your friends</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Control Panel -->
+        <aside class="control-panel">
+            <div class="panel-section">
+                <h3>📍 Friend Locations</h3>
+                <p class="location-counter">
+                    <span id="locationCount">0</span> locations selected (max 10)
+                </p>
+                <button id="clearAllBtn" class="btn btn-secondary">Clear All Markers</button>
+                <p class="hint">💡 Click on the map to add friend locations</p>
+            </div>
+
+            <div class="panel-section">
+                <h3>🏪 Venue Types</h3>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="venueType" value="美食" checked>
+                        🍽️ Restaurant
+                    </label>
+                    <label>
+                        <input type="checkbox" name="venueType" value="咖啡厅">
+                        ☕ Café
+                    </label>
+                    <label>
+                        <input type="checkbox" name="venueType" value="电影院">
+                        🎬 Cinema
+                    </label>
+                    <label>
+                        <input type="checkbox" name="venueType" value="公园">
+                        🌳 Park
+                    </label>
+                    <label>
+                        <input type="checkbox" name="venueType" value="购物">
+                        🛍️ Shopping Mall
+                    </label>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3>⚙️ Sorting Strategy</h3>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="sortStrategy" value="total" checked>
+                        ⏱️ Total Time Shortest
+                    </label>
+                    <label>
+                        <input type="radio" name="sortStrategy" value="fair">
+                        ⚖️ Most Fair (recommended)
+                    </label>
+                    <label>
+                        <input type="radio" name="sortStrategy" value="average">
+                        📊 Average Time Shortest
+                    </label>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3>📏 Search Radius</h3>
+                <div class="slider-container">
+                    <input type="range" id="radiusSlider" min="1000" max="10000" value="3000" step="500">
+                    <p class="slider-value"><span id="radiusValue">3</span> km</p>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <button id="searchBtn" class="btn btn-primary">
+                    🔍 Find Meeting Spots
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="panel-section results-section" style="display: none;">
+                <h3>📋 Results</h3>
+                <div id="resultsList"></div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>Searching for meeting spots...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </aside>
+
+        <!-- Map Container -->
+        <main class="map-container">
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
